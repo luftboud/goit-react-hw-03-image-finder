@@ -19,7 +19,7 @@ class App extends Component {
     // evt.target.reset();
   };
   handleLoad = () => {
-    this.setState({page: this.state.page+1});
+    this.setState({ page: this.state.page + 1 });
   };
   // async componentDidMount() {
   //   const response = await axios.get(
@@ -31,17 +31,10 @@ class App extends Component {
   async componentDidUpdate() {
     console.log(this.state.page);
     const response = await axios.get(
-      `/?key=${API_KEY}&q=${this.state.q}&page=1&image_type=photo&orientation=horizontal&per_page=12`
+      `/?key=${API_KEY}&q=${this.state.q}&page=${this.state.page}&image_type=photo&orientation=horizontal&per_page=12`
     );
+    response.data.hits.map(el => this.hitsArr.push(el));
     console.log(this.hitsArr);
-    if (this.hitsArr === []) {
-      this.hitsArr = response.data.hits;
-      console.log(this.hitsArr);
-    } else {
-      console.log(this.hitsArr);
-      response.data.hits.map(el => this.hitsArr.push(el));
-      console.log(this.hitsArr);
-    }
   }
   render() {
     return (
