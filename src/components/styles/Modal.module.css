@@ -8,10 +8,10 @@
   height: 100vh;
   background: rgba(0, 0, 0, 0.8);
   z-index: 1000;
+  display: flex;
 }
-.Overlay img {
-  height: 450px;
-  width: 100%;
+.Image {
+  height: 500px;
 }
 .Modal {
   max-width: calc(100vw - 48px);

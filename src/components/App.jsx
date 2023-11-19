@@ -15,37 +15,21 @@ class App extends Component {
     hits: [],
     loader_boolean: false,
     button_display: "unvisible",
-    modal_src: "",
-    modal_alt: "",
-    modal_visibility: "unvisible"
+    modal_img: "",
+    showModal: false
   };
-  handleSearch = evt => {
-    evt.preventDefault();
-    const input = evt.target.querySelector('input');
-    const request = input.value;
-    this.setState({ q: request, hits: [], page: 1 });
-    evt.target.reset();
-    // input.value = '';
+  handleSearch = (q) => {
+    this.setState({ q: q, hits: [], page: 1 });
   };
   handleLoad = () => {
     this.setState({ page: this.state.page + 1 });
   };
-  showModal = evt => {
-    evt.preventDefault();
-    const item = evt.target;
-    if (item.src !== undefined) {
-      this.setState({ modal_src: item.src, modal_alt: item.alt, modal_visibility: "visible" });
-    document.addEventListener("keydown", evt => {
-      evt.preventDefault();
-      if (evt.key === "Escape") {
-      this.setState({ modal_visibility: "unvisible" });
-      }
-    });
+  showModal = (img) => {
+    console.log(img);
+    this.setState({ modal_img: img, showModal: true})
     }
-  }
-  modalClick = evt => {
-    evt.preventDefault();
-    this.setState({ modal_visibility: "unvisible" });
+  hideModal = () => {
+    this.setState({showModal: false})
   }
   async componentDidUpdate(prevProps, prevState) {
     if (this.state.page !== prevState.page || this.state.q !== prevState.q) {
@@ -78,7 +62,7 @@ class App extends Component {
         />
         <ImageGallery hits={this.state.hits} onClick={this.showModal}></ImageGallery>
         <Button onClick={this.handleLoad} display={this.state.button_display}></Button>
-        <Modal src={this.state.modal_src} alt={this.state.modal_alt} visibility={this.state.modal_visibility} onClick={this.modalClick}></Modal>
+        {this.state.showModal && <Modal img={this.state.modal_img}  onClick={this.hideModal}></Modal>}
       </div>
     );
   }

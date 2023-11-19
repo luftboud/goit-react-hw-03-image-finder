@@ -29,6 +29,3 @@ code {
 .unvisible {
   display: none;
 }
-.addition.visible {
-  display: flex;
-}
