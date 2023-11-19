@@ -1,4 +1,4 @@
-import PropTypes, { func } from 'prop-types';
+import PropTypes  from 'prop-types';
 import css from './styles/Searchbar.module.css'
 const Searchbar = ({ onSubmit }) => {
  function handleSearch (evt) {
