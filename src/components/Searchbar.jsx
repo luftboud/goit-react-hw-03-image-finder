@@ -4,7 +4,7 @@ const Searchbar = ({ onSubmit }) => {
  function handleSearch (evt) {
     evt.preventDefault();
     const input = evt.currentTarget.elements[1];
-    console.log(input.value);
+    // console.log(input.value);
     onSubmit(input.value)
        evt.target.reset();
   };

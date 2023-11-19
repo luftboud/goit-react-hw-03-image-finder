@@ -38,12 +38,21 @@ class App extends Component {
       const response = await axios.get(
         `/?key=${API_KEY}&q=${this.state.q}&page=${this.state.page}&image_type=photo&orientation=horizontal&per_page=12`
       );
-      this.setState({loader_boolean: false})
-      this.setState({button_display: "visible"})
       const hits = response.data.hits;
-      this.setState(prevState => ({
+       this.setState(prevState => ({
         hits: [...prevState.hits, ...hits],
       }));
+      this.setState({ loader_boolean: false })
+      console.log(hits.length);
+    console.log( this.state.page * 12);
+    if (hits.length >= this.state.page * 12) {
+      console.log("234");
+      this.setState({button_display: "visible"})
+    } else {
+      this.setState({button_display: "unvisible"})
+    }
+      // this.setState({button_display: "visible"})
+      
     }
   }
   render() {
