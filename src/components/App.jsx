@@ -39,20 +39,15 @@ class App extends Component {
         `/?key=${API_KEY}&q=${this.state.q}&page=${this.state.page}&image_type=photo&orientation=horizontal&per_page=12`
       );
       const hits = response.data.hits;
-       this.setState(prevState => ({
+      this.setState(prevState => ({
         hits: [...prevState.hits, ...hits],
       }));
       this.setState({ loader_boolean: false })
-      console.log(hits.length);
-    console.log( this.state.page * 12);
-    if (hits.length >= this.state.page * 12) {
-      console.log("234");
+      if (this.state.hits.length + hits.length >= this.state.page * 12) {
       this.setState({button_display: "visible"})
-    } else {
+      } else {
       this.setState({button_display: "unvisible"})
-    }
-      // this.setState({button_display: "visible"})
-      
+      }   
     }
   }
   render() {
